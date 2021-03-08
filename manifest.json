@@ -1,0 +1,50 @@
+{
+	"name": "Eye Care Filters for YouTube",
+	"short_name": "Eye Care Filters for YouTube",
+	"manifest_version": 2,
+	"version": "1.0.0.0",
+	"description": "Eye Care Filters filters for YouTube",
+	"browser_action": {
+		"default_icon": "48.png",
+		"default_title": "Eye Care Filters for YouTube",
+		"default_popup": "popup.html"
+	},
+	"background": {
+		"page": "background.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*.youtube.com/*", "*://*.youtube-nocookie.com/*"
+			],
+			"css": [
+				"app_player.css"
+			],
+			"js": [
+				"content.js"
+			],
+			"run_at": "document_end",
+			"all_frames": true
+		}
+	],
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"webRequest",
+		"storage",
+		"<all_urls>",
+		"webNavigation",
+		"tabCapture",
+		"webRequestBlocking"
+	],
+	"icons": {
+		"64": "64.png",
+		"48": "48.png",
+		"32": "32.png",
+		"16": "16.png",
+		"128": "128.png"
+	},	
+	"web_accessible_resources": [		
+	],
+	"content_security_policy": "script-src 'self'; object-src 'self'"
+}
