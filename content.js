@@ -61,26 +61,18 @@ function applyFilter(index, manual) {
 		var lenSvg = svgfilter.length;
 
 		if (filter != null && filter != undefined) {
-			if (index < len) {
-				video.style.filter = "";
-				filter.style.background = filters[index];
-				y.style.filter = '';
-				filter.style.backgroundSize = 'cover';
-				
-			} else {
-				filter.innerHTML = svgfilter[index - len];
+			if (index < lenSvg) {
+                                filter.innerHTML = svgfilter[index];
 				video.style.filter = "url(#myfilter)";
 				filter.style.background = "";
 				filter.style.backgroundSize = 'unset';
 				y.style.filter = '';
-				if(index==41||index==42||index==43){
-					if(index==41)
-						y.style.filter = 'invert(100%)';
-					else if(index==42)
-						y.style.filter = 'sepia(100%) brightness(50%) hue-rotate(280deg)';
-					else if(index==43)
-						y.style.filter = 'sepia(100%) brightness(50%) hue-rotate(180deg)';
-				}
+				
+			} else {
+				video.style.filter = "";
+				filter.style.background = filters[index - lenSvg];
+				y.style.filter = '';
+				filter.style.backgroundSize = 'cover';								
 			}
 		}
 	}
