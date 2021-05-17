@@ -2,7 +2,7 @@
 	"name": "Eye Care Filters for YouTube",
 	"short_name": "Eye Care Filters for YouTube",
 	"manifest_version": 2,
-	"version": "1.0.0.1",
+	"version": "1.0.0.4",
 	"description": "Eye Care Filters filters for YouTube",
 	"browser_action": {
 		"default_icon": "48.png",

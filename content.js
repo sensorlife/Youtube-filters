@@ -6,8 +6,7 @@ var svgfilter = new Array(
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Green Normal--*/,
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Yellow Normal--*/,
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 0.5 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Orange Normal--*/,
-	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Red Normal--*/,
-	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix values="1 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1" style="color-interpolation-filters:sRGB"/><feConvolveMatrix filterRes="100 100" style="color-interpolation-filters:sRGB" order="3" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" preserveAlpha="true"/></filter></defs></svg>`,/*Orange-Green Normal--*/
+	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Red Normal--*/,	
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="saturate" values="0.10"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Black-White Normal--*/
 );
 //}
@@ -66,7 +65,8 @@ function applyFilter(index, manual) {
 				video.style.filter = "url(#myfilter)";
 				filter.style.background = "";
 				filter.style.backgroundSize = 'unset';
-				y.style.filter = '';
+                                y.style.filter = 'brightness(140%) contrast(156%)';
+                                
 				
 			} else {
 				video.style.filter = "";
