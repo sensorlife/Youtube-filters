@@ -2,7 +2,8 @@
 var filters = new Array("rgba(0,0,0,0)"	
 );
 var svgfilter = new Array(
-	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`,/*Color Normal*/	
+	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic"             k1="0.5" k2="0.050" k3="0.030" k4="0"/></filter></defs></svg>`,/*Natural Color Normal*/
+	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`,/*Color Normal*/		
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Green Normal--*/,
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Yellow Normal--*/,
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 0.5 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Orange Normal--*/,
@@ -69,7 +70,7 @@ function applyFilter(index, manual) {
                                 
 				
 			} else {
-				video.style.filter = "";
+				video.style.filter = "";				
 				filter.style.background = filters[index - lenSvg];
 				y.style.filter = '';
 				filter.style.backgroundSize = 'cover';								
