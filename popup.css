@@ -11,7 +11,7 @@ html, body {
 #videoeffect{
 	display:inline-block !important;
 	width:250px;
-	height:302.5px;
+	height:450.5px;
 	background-color:rgba(255, 253, 253, 0.21);
 	border-radius:1px;
 	padding:10px 5px;
@@ -267,3 +267,37 @@ svg {
 svg:hover {
   background: rgba(255, 255, 255, .3);
 }
+
+#manualfilter span *{
+	display:inline-block !important;
+}
+#manualfilter span label{
+	width:140px !important;
+	color:gray !important;
+}
+#manualfilter span input{
+	width: 75px;
+    background: transparent;
+    color: red;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 3px 5px;
+    text-align: center;
+	margin-left:60px;
+}
+#manualfilter{
+	background:rgb(30,30,30);
+	border-radius:1px;
+	width:200px;
+}
+
+#spbutton{margin-bottom:10px;}
+#setvalue{width:130px !important;margin-left:30px !important;padding:5px 10px;}
+#spbutton input{color:white !important;padding:5px 0px !important;background:darkgray;}
+#spbutton input:active{background:black;}
+
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    border-radius:5px;
+}
+

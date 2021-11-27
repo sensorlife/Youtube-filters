@@ -1,14 +1,18 @@
 ﻿//{
-var filters = new Array("rgba(0,0,0,0)"	
-);
-var svgfilter = new Array(
-	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic"             k1="0.5" k2="0.050" k3="0.030" k4="0"/></filter></defs></svg>`,/*Natural Color Normal*/
+var k2Val=1.010;
+var filters = new Array("rgba(0,0,0,0)");
+var svgfilter = new Array(	
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`,/*Color Normal*/		
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Green Normal--*/,
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Yellow Normal--*/,
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 0.5 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Orange Normal--*/,
 	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Red Normal--*/,	
-	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="saturate" values="0.10"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Black-White Normal--*/
+	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feColorMatrix type="saturate" values="0.10"/><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /></filter></defs></svg>`/*Black-White Normal--*/,
+`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic"             k1="0.5" k2="0.050" k3="0.030" k4="0"/></filter></defs></svg>`,/*Natural Color Normal*/
+	`<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><filter id="myfilter"><feGaussianBlur stdDeviation="1" /><feConvolveMatrix preserveAlpha="true" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" /><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic"             k1="0.5" k2=0.050 k3="0.030" k4="0"/><feColorMatrix type="matrix"     values=  "1 0 0 0 0
+ 0 1 0 0 0
+ 0 0 0.9987 0 0
+ 0 0 0 1 0"/></filter></defs></svg>`,/*Natural Colors with edges Blue Light filter*/
 );
 //}
 
@@ -59,22 +63,33 @@ function applyFilter(index, manual) {
 		var filter = document.getElementById("ytp-video-filters-htcom");
 		var len = filters.length;
 		var lenSvg = svgfilter.length;
+                var lastFilterIndex = len + lenSvg - 1;
 
 		if (filter != null && filter != undefined) {
-			if (index < lenSvg) {
-                                filter.innerHTML = svgfilter[index];
+			if (index < len) {
+                                video.style.filter = "";				
+				filter.style.background = filters[index];
+				y.style.filter = '';
+				filter.style.backgroundSize = 'cover';                      
+				
+			} else {
+                                var innerHtmlFilter = svgfilter[index - len];
+				if(index == lastFilterIndex && manual!=null)
+                                {
+                                  var man = JSON.parse(manual);
+
+				  var k2Val = 0.01 * parseInt(man[0]);
+var blueLight = 0.05 * parseInt(man[1]);
+                                  innerHtmlFilter = innerHtmlFilter.replace("k2=0.050", "k2=" + k2Val);
+                                  innerHtmlFilter = innerHtmlFilter.replace("0.9987", "" + blueLight);
+                                }                                
+
+				filter.innerHTML = innerHtmlFilter;
 				video.style.filter = "url(#myfilter)";
 				filter.style.background = "";
 				filter.style.backgroundSize = 'unset';
-                                y.style.filter = 'brightness(140%) contrast(156%)';
-                                
-				
-			} else {
-				video.style.filter = "";				
-				filter.style.background = filters[index - lenSvg];
-				y.style.filter = '';
-				filter.style.backgroundSize = 'cover';								
-			}
+                                y.style.filter = 'brightness(140%) contrast(156%)';	
+			}			
 		}
 	}
 }
